@@ -9,20 +9,19 @@ public class Robot {
     private DigitalChannel hallSensor = null;
     private DcMotor testMotor = null;
     private Servo testServo = null;
-    static final int COUNTS_PER_REVOLUTION = 1120; // with 40:1 reduction
+    private double testMotorTicksPerRevolution = 0;
 
     void init(OpMode opMode) {
         hallSensor = opMode.hardwareMap.get(DigitalChannel.class, "hall_sensor");
         testMotor = opMode.hardwareMap.get(DcMotor.class, "test_motor");
         testServo = opMode.hardwareMap.get(Servo.class, "test_servo");
         hallSensor.setMode(DigitalChannel.Mode.INPUT);
+        testMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        testMotorTicksPerRevolution = testMotor.getMotorType().getTicksPerRev();
     }
 
     boolean sensorSeesMagnet() {
-        if (hallSensor.getState() == false) {
-            return true;   // sensor is LOW when it sees magnet
-        }
-        return false;
+        return !hallSensor.getState();  // Active Low
     }
 
     void setMotorSpeed(double speed) {
@@ -38,19 +37,8 @@ public class Robot {
         testServo.setPosition(0.0);
     }
 
-    int getMotorPosition() {
-        return testMotor.getCurrentPosition();
-    }
-
-    void turnMotorRotations(double rotations, double startSpeed) {
-        int newPosition = (int) rotations * COUNTS_PER_REVOLUTION;
-        testMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        testMotor.setTargetPosition(newPosition);
-        testMotor.setPower(startSpeed);
-    }
-
-    boolean isMotorBusy() {
-        return testMotor.isBusy();
+    double getMotorRotations() {
+        return ((double) testMotor.getCurrentPosition()) / testMotorTicksPerRevolution;
     }
 
 }
