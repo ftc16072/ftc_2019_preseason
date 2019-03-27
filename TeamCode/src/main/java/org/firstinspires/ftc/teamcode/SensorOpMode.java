@@ -11,7 +11,7 @@ public class SensorOpMode extends OpMode {
     // Code to run ONCE when the driver hits INIT
     @Override
     public void init() {
-        robot.init(this);
+        robot = new Robot(this);
     }
 
     // Code to run REPEATEDLY after the driver hits PLAY but before they hit STOP
