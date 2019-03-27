@@ -7,12 +7,15 @@ import com.qualcomm.robotcore.hardware.DigitalChannel;
 public class Robot {
     private DigitalChannel hallSensor;
     private DcMotor testMotor;
+    private double ticksPerRevTestMotor;
 
     Robot(OpMode opMode) {
         hallSensor = opMode.hardwareMap.get(DigitalChannel.class, "hall_sensor");
-        testMotor = opMode.hardwareMap.get(DcMotor.class, "test_motor");
         hallSensor.setMode(DigitalChannel.Mode.INPUT);
+
+        testMotor = opMode.hardwareMap.get(DcMotor.class, "test_motor");
         testMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        ticksPerRevTestMotor = testMotor.getMotorType().getTicksPerRev();
     }
 
     void setSpeed(double speed) {
@@ -20,7 +23,7 @@ public class Robot {
     }
 
     double getRotations() {
-        return ((double) testMotor.getCurrentPosition()) / testMotor.getMotorType().getTicksPerRev();
+        return ((double) testMotor.getCurrentPosition()) / ticksPerRevTestMotor;
     }
 
     boolean getHallSensor() {
