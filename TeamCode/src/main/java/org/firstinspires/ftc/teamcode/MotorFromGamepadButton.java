@@ -76,6 +76,7 @@ public class MotorFromGamepadButton extends OpMode {
         } else {
             robot.setMotorSpeed(0.0);
         }
+        telemetry.addData("Motor Rotations", robot.getMotorRotations());
     }
 
     /*

@@ -73,6 +73,7 @@ public class MotorFromGamepadJoystick extends OpMode {
         float motorSpeed = gamepad1.left_stick_y;
         robot.setMotorSpeed(motorSpeed);
         telemetry.addData("Motor Speed", motorSpeed);
+        telemetry.addData("Motor Rotations", robot.getMotorRotations());
     }
 
     /*
