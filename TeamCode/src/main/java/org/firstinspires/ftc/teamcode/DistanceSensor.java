@@ -34,6 +34,8 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 
+import java.util.Locale;
+
 /**
  * This file is the first training item - it makes sure we can send to phone
  */
@@ -49,7 +51,7 @@ public class DistanceSensor extends OpMode {
     @Override
     public void init() {
         robot = new Robot();
-        robot.init(this);
+        robot.init(hardwareMap);
         telemetry.addData("Status", "Initialized");
     }
 
@@ -72,7 +74,7 @@ public class DistanceSensor extends OpMode {
      */
     @Override
     public void loop() {
-        telemetry.addData("range", String.format("%.01f cm", robot.getDistance(DistanceUnit.CM)));
+        telemetry.addData("range", String.format(Locale.US, "%.01f cm", robot.getDistance(DistanceUnit.CM)));
     }
 
     /*

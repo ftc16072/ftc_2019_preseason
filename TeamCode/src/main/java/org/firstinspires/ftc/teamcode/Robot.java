@@ -2,10 +2,10 @@ package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.hardware.bosch.BNO055IMU;
 import com.qualcomm.hardware.rev.Rev2mDistanceSensor;
-import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DigitalChannel;
+import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.NormalizedRGBA;
 import com.qualcomm.robotcore.hardware.Servo;
 
@@ -24,27 +24,27 @@ public class Robot {
     private BNO055IMU imu = null;
     private double testMotorTicksPerRevolution = 0;
 
-    void init(OpMode opMode) {
-        hallSensor = opMode.hardwareMap.get(DigitalChannel.class, "hall_sensor");
-        testMotor = opMode.hardwareMap.get(DcMotor.class, "test_motor");
-        testServo = opMode.hardwareMap.get(Servo.class, "test_servo");
-        distanceSensor = opMode.hardwareMap.get(Rev2mDistanceSensor.class, "sensor_range");
-        colorSensor = opMode.hardwareMap.get(ColorSensor.class, "color_sensor");
-        initIMU(opMode);
+    void init(HardwareMap hardwareMap) {
+        hallSensor = hardwareMap.get(DigitalChannel.class, "hall_sensor");
+        testMotor = hardwareMap.get(DcMotor.class, "test_motor");
+        testServo = hardwareMap.get(Servo.class, "test_servo");
+        distanceSensor = hardwareMap.get(Rev2mDistanceSensor.class, "sensor_range");
+        colorSensor = hardwareMap.get(ColorSensor.class, "color_sensor");
+        initIMU(hardwareMap);
 
         hallSensor.setMode(DigitalChannel.Mode.INPUT);
         testMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         testMotorTicksPerRevolution = testMotor.getMotorType().getTicksPerRev();
     }
 
-    void initIMU(OpMode opMode) {
+    private void initIMU(HardwareMap hardwareMap) {
         BNO055IMU.Parameters parameters = new BNO055IMU.Parameters();
         parameters.angleUnit = BNO055IMU.AngleUnit.DEGREES;
 
         // Retrieve and initialize the IMU. We expect the IMU to be attached to an I2C port
         // on a Core Device Interface Module, configured to be a sensor of type "AdaFruit IMU",
         // and named "imu".
-        imu = opMode.hardwareMap.get(BNO055IMU.class, "imu");
+        imu = hardwareMap.get(BNO055IMU.class, "imu");
         imu.initialize(parameters);
     }
 

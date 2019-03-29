@@ -47,7 +47,7 @@ public class ServoFromGamepad extends OpMode {
     @Override
     public void init() {
         robot = new Robot();
-        robot.init(this);
+        robot.init(hardwareMap);
         telemetry.addData("Status", "Initialized");
     }
 
