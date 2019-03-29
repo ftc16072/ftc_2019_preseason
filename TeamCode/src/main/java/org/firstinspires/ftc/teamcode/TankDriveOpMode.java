@@ -18,6 +18,9 @@ public class TankDriveOpMode extends OpMode {
     // Code to run REPEATEDLY after the driver hits PLAY but before they hit STOP
     @Override
     public void loop() {
-        robot.drivetrain.drive(-gamepad1.left_stick_y, -gamepad1.right_stick_y);
+        double leftSpeed = -gamepad1.left_stick_y;
+        double rightSpeed = -gamepad1.right_stick_y;
+        telemetry.addData("Speeds", "%.2f %.2f", leftSpeed, rightSpeed);
+        robot.drivetrain.drive(leftSpeed, rightSpeed);
     }
 }
