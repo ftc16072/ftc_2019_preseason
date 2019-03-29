@@ -1,8 +1,8 @@
 package org.firstinspires.ftc.teamcode;
 
-import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DigitalChannel;
+import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 
 public class Robot {
@@ -11,15 +11,15 @@ public class Robot {
     private double ticksPerRevTestMotor;
     private Servo testServo;
 
-    Robot(OpMode opMode) {
-        hallSensor = opMode.hardwareMap.get(DigitalChannel.class, "hall_sensor");
+    void init(HardwareMap hwMap) {
+        hallSensor = hwMap.get(DigitalChannel.class, "hall_sensor");
         hallSensor.setMode(DigitalChannel.Mode.INPUT);
 
-        testMotor = opMode.hardwareMap.get(DcMotor.class, "test_motor");
+        testMotor = hwMap.get(DcMotor.class, "test_motor");
         testMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         ticksPerRevTestMotor = testMotor.getMotorType().getTicksPerRev();
 
-        testServo = opMode.hardwareMap.get(Servo.class, "test_servo");
+        testServo = hwMap.get(Servo.class, "test_servo");
     }
 
     void setServoPosition(double position) {
