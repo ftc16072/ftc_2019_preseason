@@ -21,6 +21,6 @@ public class TankDriveOpMode extends OpMode {
         double leftSpeed = -gamepad1.left_stick_y;
         double rightSpeed = -gamepad1.right_stick_y;
         telemetry.addData("Speeds", "%.2f %.2f", leftSpeed, rightSpeed);
-        robot.drivetrain.drive(leftSpeed, rightSpeed);
+        robot.drive(leftSpeed, rightSpeed);
     }
 }
