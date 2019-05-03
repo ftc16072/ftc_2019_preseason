@@ -1,1 +1,6 @@
+sudo: required
 language: android
+install: sudo mkdir /usr/local/android-sdk/licenses && sudo cp sdk_license/* /usr/local/android-sdk/licenses/
+android:
+   components:
+     - build-tools-25.0.3
