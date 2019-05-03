@@ -4,3 +4,4 @@ install: sudo mkdir /usr/local/android-sdk/licenses && sudo cp sdk_license/* /us
 android:
    components:
      - build-tools-25.0.3
+     - android-26
