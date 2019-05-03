@@ -2,7 +2,7 @@
 This repository contains the code for FTC 16072.
 
 ## Travis-CI build status
-Master Branch [![Build Status](https://travis-ci.org/ftc16072/ftc_2019_preseason.svg?branch=master)](https://travis-ci.org/ftc16072/ftc_2019_preseason)
+Master Branch [![Build Status](https://travis-ci.com/ftc16072/ftc_2019_preseason.svg?branch=master)](https://travis-ci.com/ftc16072/ftc_2019_preseason)
 
 ## Downloading the Project
 It is important to note that this repository is large and can take a long time and use a lot of space to download. If you would like to save time and space, there are some options that you can choose to download only the most current version of the Android project folder:
